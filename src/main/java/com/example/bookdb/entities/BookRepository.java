@@ -17,21 +17,23 @@ public class BookRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Book> getAll() {
+    // LIST
+    public List<Book> listAll() {
         String sql = "SELECT * FROM books";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
     }
-    /*
+
+    //READ
     public Book getById(Long id) {
         String sql = "select * from books where id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), id);
     }
-    */
 
-    /*
-    public Book save(Book book) {
+    //CREATE inserts book into db and returns num of rows inserted
+    public int insertBook(Book book) {
         String sql = "INSERT INTO books (name, author) VALUES (?, ?)";
-        return jdbcTemplate.update(sql, book.getUsername(), user.getPassword());
+        return jdbcTemplate.update(sql, book.getTitle(), book.getAuthor());
     }
-     */
+
+
 }

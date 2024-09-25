@@ -17,7 +17,16 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> getAll() {
-        return bookRepository.getAll();
+    public List<Book> listAll() {
+        return bookRepository.listAll();
     }
+
+    public Book getById(Long id) {
+        return bookRepository.getById(id);
+    }
+
+    public int insertBook(Book book) {
+        return bookRepository.insertBook(book);
+    }
+
 }
