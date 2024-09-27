@@ -36,7 +36,7 @@ public class BookController {
     }
 
     //UPDATE
-    @PatchMapping
+    @PutMapping
     public int updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }
