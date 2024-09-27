@@ -35,5 +35,18 @@ public class BookRepository {
         return jdbcTemplate.update(sql, book.getTitle(), book.getAuthor());
     }
 
+    //UPDATE
+    public int updateBook(Book book) {
+        String sql = "UPDATE books SET name = ?, author = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, book.getTitle(), book.getAuthor(), book.getId());
+    }
+
+    //DELETE
+    public int deleteBook(Long id) {
+        String sql = "DELETE FROM books WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
+
+
 
 }

@@ -17,13 +17,33 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    //LIST
     @GetMapping
     public List<Book> listBooks() {
         return bookService.listAll();
     }
 
-    @PostMapping
+    //READ
+    @GetMapping("getByID")
     public Book getBookById(@RequestBody Long id) {
         return bookService.getById(id);
+    }
+
+    //CREATE
+    @PostMapping
+    public int createBook(@RequestBody Book book) {
+        return bookService.insertBook(book);
+    }
+
+    //UPDATE
+    @PatchMapping
+    public int updateBook(@RequestBody Book book) {
+        return bookService.updateBook(book);
+    }
+
+    //DELETE
+    @DeleteMapping
+    public int deleteBookById(@RequestBody Long id) {
+        return bookService.deleteBook(id);
     }
 }
