@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:17  # or the version you want to use
+    container_name: postgres-test-db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_URL}  # Default database
+    ports:
+      - "5433:5432"  # Host port 5433 mapped to container's 5432
+    volumes:
+      - temp-volume:/var/lib/postgresql/data  # Temporary volume for data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # SQL script to initialize the database (optional)
+
+volumes:
+  temp-volume:
+    driver: local
