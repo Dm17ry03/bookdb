@@ -21,11 +21,7 @@ class BookdbApplicationTests {
 
 	@Container
 	public static PostgreSQLContainer<?> postgresContainer =
-			new PostgreSQLContainer<>("postgres:17")
-					.withDatabaseName("testdb")
-					.withUsername("test")
-					.withPassword("test");
-					//.withExposedPorts(5433);
+			new PostgreSQLContainer<>("postgres:17");
 
 	@DynamicPropertySource
 	static void registerPgProperties(DynamicPropertyRegistry registry) {
@@ -37,6 +33,17 @@ class BookdbApplicationTests {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Test
+	void testPostgresContainerIsRunning() {
+		// Ensure the container is running
+		assert(postgresContainer.isRunning());
+	}
+
+	@Test
+	void selectTest() {
+		jdbcTemplate.execute("select 1");
+	}
 
 	@Test
 	void contextLoads() {
